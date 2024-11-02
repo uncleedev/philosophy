@@ -5,20 +5,20 @@ import { Colors } from '../constant/Color'
 
 export default function Background({children}) {
   return (
-    <SafeAreaView>
       <LinearGradient
           colors={[Colors.primary, Colors.accent]}
           style={{
               flex: 1,
               justifyContent: 'center',
               alignItems: 'center',
-              padding: 24
+              paddingTop: 42,
+              paddingHorizontal: 24,
+              paddingBottom: 24
           }}
       >
         
           {children}
       </LinearGradient>
-    </SafeAreaView>
   )
 }
 
