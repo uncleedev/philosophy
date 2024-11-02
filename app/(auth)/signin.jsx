@@ -5,7 +5,7 @@ import { defaultStyles } from '../../assets/styles/style'
 import { Colors } from '../../constant/Color'
 import CustomButton from '../../components/CustomButton'
 import { Link, router } from 'expo-router'
-import { signInWithEmailAndPassword } from '@react-native-firebase/auth'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from "../../configs/firebaseConfig"
 
 export default function signin() {
@@ -79,7 +79,7 @@ export default function signin() {
 
             <CustomButton 
               title={"Login"}
-              onPress={() => router.push("home")}
+              onPress={handleLogin}
             />
           </View>
           <Text style={[defaultStyles.h3, {opacity: 0.6}]}>Don't have an Account?<Link href={"signup"} style={{color: Colors.accent}}>Sign Up.</Link></Text>
