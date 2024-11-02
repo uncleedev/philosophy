@@ -5,45 +5,46 @@ import { defaultStyles } from '../../assets/styles/style'
 import { Colors } from '../../constant/Color'
 import CustomButton from '../../components/CustomButton'
 import { Link, router } from 'expo-router'
-// import { signInWithEmailAndPassword } from '@react-native-firebase/auth'
+import { signInWithEmailAndPassword } from '@react-native-firebase/auth'
+import { auth } from "../../configs/firebaseConfig"
 
 export default function signin() {
 
   const  [email, setEmail] = useState('');
   const  [password, setPassword] = useState('');
 
-  // const handleLogin = async () => {
-  //   if (!email || !password) {
-  //     Alert.alert("Error", "Please enter both email and password.");
-  //     return;
-  //   }
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert("Error", "Please enter both email and password.");
+      return;
+    }
 
-  //   try {
-  //     const userCredential = await signInWithEmailAndPassword(auth, email, password);
-  //     Alert.alert("Success", `Successfully logged in as: ${userCredential.user.email}`);
-  //     router.push("home")
-  //     console.log("Successfully logged in: ", userCredential.user);
-  //   } catch (error) {
-  //     let errorMessage;
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      Alert.alert("Success", `Successfully logged in as: ${userCredential.user.email}`);
+      router.push("home")
+      console.log("Successfully logged in: ", userCredential.user);
+    } catch (error) {
+      let errorMessage;
   
-  //     switch (error.code) {
-  //       case 'auth/invalid-email':
-  //         errorMessage = 'Invalid email format.';
-  //         break;
-  //       case 'auth/user-not-found':
-  //         errorMessage = 'No user found with this email.';
-  //         break;
-  //       case 'auth/wrong-password':
-  //         errorMessage = 'Incorrect password.';
-  //         break;
-  //       default:
-  //         errorMessage = 'An error occurred. Please try again.';
-  //     }
+      switch (error.code) {
+        case 'auth/invalid-email':
+          errorMessage = 'Invalid email format.';
+          break;
+        case 'auth/user-not-found':
+          errorMessage = 'No user found with this email.';
+          break;
+        case 'auth/wrong-password':
+          errorMessage = 'Incorrect password.';
+          break;
+        default:
+          errorMessage = 'An error occurred. Please try again.';
+      }
   
-  //     Alert.alert("Error", errorMessage);
-  //     console.error("Login error: ", error);
-  //   }
-  // }
+      Alert.alert("Error", errorMessage);
+      console.error("Login error: ", error);
+    }
+  }
 
   return (
     <Background>

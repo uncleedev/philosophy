@@ -5,49 +5,50 @@ import { defaultStyles } from '../../assets/styles/style'
 import { Colors } from '../../constant/Color'
 import CustomButton from '../../components/CustomButton'
 import { Link, router } from 'expo-router'
-// import { createUserWithEmailAndPassword } from '@react-native-firebase/auth'
+import { createUserWithEmailAndPassword } from '@react-native-firebase/auth'
+import { auth } from "../../configs/firebaseConfig"
 
 export default function signup() {
 
   const  [email, setEmail] = useState('');
   const  [password, setPassword] = useState('');
 
-  // const handleRegister = async () => {
-  //   if (!email || !password) {
-  //     Alert.alert("Error", "Please enter both email and password.");
-  //     return;
-  //   }
+  const handleRegister = async () => {
+    if (!email || !password) {
+      Alert.alert("Error", "Please enter both email and password.");
+      return;
+    }
 
-  //   try {
-  //     await createUserWithEmailAndPassword(auth, email, password);
-  //     Alert.alert("Success", "Successfully created an account");
-  //     setEmail("")
-  //     setPassword("")
-  //   } catch (error) {
-  //     let errorMessage;
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      Alert.alert("Success", "Successfully created an account");
+      setEmail("")
+      setPassword("")
+    } catch (error) {
+      let errorMessage;
     
-  //     switch (error.code) {
-  //         case 'auth/invalid-email':
-  //             errorMessage = "The email address is not valid.";
-  //             break;
-  //         case 'auth/email-already-in-use':
-  //             errorMessage = "The email address is already in use.";
-  //             break;
-  //         case 'auth/weak-password':
-  //             errorMessage = "The password is too weak. It should be at least 6 characters.";
-  //             break;
-  //         case 'auth/operation-not-allowed':
-  //             errorMessage = "Email/password accounts are not enabled.";
-  //             break;
-  //         default:
-  //             errorMessage = "An unknown error occurred.";
-  //             break;
-  //     }
+      switch (error.code) {
+          case 'auth/invalid-email':
+              errorMessage = "The email address is not valid.";
+              break;
+          case 'auth/email-already-in-use':
+              errorMessage = "The email address is already in use.";
+              break;
+          case 'auth/weak-password':
+              errorMessage = "The password is too weak. It should be at least 6 characters.";
+              break;
+          case 'auth/operation-not-allowed':
+              errorMessage = "Email/password accounts are not enabled.";
+              break;
+          default:
+              errorMessage = "An unknown error occurred.";
+              break;
+      }
 
-  //     Alert.alert("Error", errorMessage);
-  //     console.log("Error: ", error);
-  //   }
-  // }
+      Alert.alert("Error", errorMessage);
+      console.log("Error: ", error);
+    }
+  }
 
   return (
     <Background>
