@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Colors } from '../constant/Color'
@@ -14,7 +14,9 @@ export default function Background({children}) {
             padding: 24
         }}
     >
+      <SafeAreaView>
         {children}
+      </SafeAreaView>
     </LinearGradient>
   )
 }
